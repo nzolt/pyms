@@ -16,7 +16,7 @@ ENV LANG C.UTF-8
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
 
-apk update
+RUN apk update
 
 # runtime dependencies
 RUN set -eux; \
