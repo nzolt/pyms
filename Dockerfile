@@ -13,6 +13,11 @@ ENV PATH /usr/local/bin:$PATH
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
+echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
+echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
+
+apk update
+
 # runtime dependencies
 RUN set -eux; \
 	apk add --no-cache \
@@ -20,6 +25,9 @@ RUN set -eux; \
 		ca-certificates \
 # and tzdata for PEP 615 (https://www.python.org/dev/peps/pep-0615/)
 		tzdata \
+# add MongoDB 
+		mongodb \
+		mongodb-tools \
 	;
 # other runtime dependencies for Python are installed later
 
@@ -139,7 +147,7 @@ RUN set -ex; \
 		\) -exec rm -rf '{}' +; \
 	rm -f get-pip.py
 
-RUN	pip3 install certifi==2020.6.20 chardet==3.0.4 fastapi==0.61.1 h11==0.10.0 h2==3.2.0 hpack==3.0.0 Uvicorn==0.13.4 hyperframe==5.2.0 idna==2.10 priority==1.3.0 pydantic==1.6.1 requests==2.24.0 starlette==0.13.6 toml==0.10.1 typing-extensions==3.7.4.3 urllib3==1.25.10 wsproto==0.15.0
+RUN	pip3 install certifi==2020.6.20 chardet==3.0.4 fastapi==0.61.1 h11==0.10.0 h2==3.2.0 hpack==3.0.0 Uvicorn==0.13.4 hyperframe==5.2.0 idna==2.10 priority==1.3.0 pydantic==1.6.1 requests==2.24.0 starlette==0.13.6 toml==0.10.1 typing-extensions==3.7.4.3 urllib3==1.25.10 wsproto==0.15.0 pymongo==4.1.1
 
 RUN set -eux; \
 	\
