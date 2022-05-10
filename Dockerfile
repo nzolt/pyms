@@ -13,8 +13,8 @@ ENV PATH /usr/local/bin:$PATH
 # > At the moment, setting "LANG=C" on a Linux system *fundamentally breaks Python 3*, and that's not OK.
 ENV LANG C.UTF-8
 
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
+#RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/main' >> /etc/apk/repositories
+#RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.6/community' >> /etc/apk/repositories
 
 RUN apk update
 
@@ -26,8 +26,8 @@ RUN set -eux; \
 # and tzdata for PEP 615 (https://www.python.org/dev/peps/pep-0615/)
 		tzdata \
 # add MongoDB 
-		mongodb \
-		mongodb-tools \
+#		mongodb \
+#		mongodb-tools \
 	;
 # other runtime dependencies for Python are installed later
 
